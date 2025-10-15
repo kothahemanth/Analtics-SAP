@@ -92,11 +92,25 @@
   "sap.ovp": {
     "globalFilterModel": "mainModel",
     "globalFilterEntitySet": "BooksAnalytics",
-    "containerLayout": "resizable",
     "enableLiveFilter": true,
     "considerAnalyticalParameters": false,
-    "cards": {},
-    "globalFilterControlType": "MacroFilterBar"
+    "cards": {
+      "Stock": {
+        "template": "sap.ovp.cards.v4.table",
+        "model": "mainModel",
+        "settings": {
+          "entitySet": "BooksAnalytics",
+          "title": "Stock Data",
+          "sortBy": "ID",
+          "sortOrder": "ascending"
+        }
+      }
+    },
+    "globalFilterControlType": "MacroFilterBar",
+    "chartSettings": {
+      "showDataLabel": true
+    },
+    "containerLayout": "resizable"
   },
   "sap.fiori": {
     "registrationIds": [],

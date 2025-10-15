@@ -88,7 +88,8 @@ annotate CatalogService.BooksAnalytics with @(
       category1,
       category2,
       title,
-      publishedAt
+      publishedAt,
+      quantity
     ],
 
     AggregatableProperties: [{
@@ -250,6 +251,7 @@ annotate CatalogService.BooksAnalytics with@(
             {  $Type : 'UI.DataField', Value : category2, },
             {  $Type : 'UI.DataField', Value : stock, },
             {  $Type : 'UI.DataField', Value : publishedAt, },
+            {  $Type : 'UI.DataField', Value : quantity}
         ],
     }
 );

@@ -8,6 +8,7 @@ entity Books {
   category1: String @title: 'Category1';
   category2: String @title: 'Category2';
   publishedAt: Date @title: 'Published At';
+  quantity: Decimal @title : 'Quantity'
 }
 
 entity PurchaseOrders as projection on external.PurchaseOrderItem {

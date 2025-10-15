@@ -1,11 +1,11 @@
-ID,title,stock,category1,category2,publishedAt 
-1,The Great Gatsby,15,Fiction,Classic,1925-04-10
-2,1984,25,Fiction,Dystopian,1949-06-08
-3,To Kill a Mockingbird,12,Fiction,Historical,1960-07-11
-4,Moby Dick,8,Fiction,Adventure,1851-10-18
-5,War and Peace,20,Fiction,Historical,1869-01-01
-6,Pride and Prejudice,30,Fiction,Romance,1813-01-28
-7,The Catcher in the Rye,10,Fiction,Young Adult,1951-07-16
-8,Brave New World,18,Fiction,Dystopian,1932-08-01
-9,The Hobbit,22,Fiction,Fantasy,1937-09-21
-10,Harry Potter and the Sorcerer's Stone,50,Fiction,Fantasy,1997-06-26
+ID,title,stock,category1,category2,publishedAt,quantity 
+1,The Great Gatsby,15,Fiction,Classic,1925-04-10,5
+2,1984,25,Fiction,Dystopian,1949-06-08,10
+3,To Kill a Mockingbird,12,Fiction,Historical,1960-07-11,15
+4,Moby Dick,8,Fiction,Adventure,1851-10-18,20
+5,War and Peace,20,Fiction,Historical,1869-01-01,25
+6,Pride and Prejudice,30,Fiction,Romance,1813-01-28,30
+7,The Catcher in the Rye,10,Fiction,Young Adult,1951-07-16,35
+8,Brave New World,18,Fiction,Dystopian,1932-08-01,40
+9,The Hobbit,22,Fiction,Fantasy,1937-09-21,45
+10,Harry Potter and the Sorcerer's Stone,50,Fiction,Fantasy,1997-06-26,50
