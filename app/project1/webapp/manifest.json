@@ -94,7 +94,25 @@
     "globalFilterEntitySet": "BooksAnalytics",
     "enableLiveFilter": true,
     "considerAnalyticalParameters": false,
+    "globalFilterControlType": "MacroFilterBar",
+    "chartSettings": {
+      "showDataLabel": true
+    },
+    "containerLayout": "resizable",
     "cards": {
+      "StockChart": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.v4.charts.analytical",
+        "settings": {
+          "entitySet": "BooksAnalytics",
+          "title": "Books Stock Overview",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TitleStock",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#TitleStock",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#stock",
+          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
+          "navigation": "display"
+        }
+      },
       "Stock": {
         "template": "sap.ovp.cards.v4.table",
         "model": "mainModel",
@@ -102,18 +120,19 @@
           "entitySet": "BooksAnalytics",
           "title": "Stock Data",
           "sortBy": "ID",
-          "sortOrder": "ascending"
+          "sortOrder": "ascending",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Stock",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#stock",
+          "listType": "condensed",
+          "listFlavor": "bar",
+          "maxItems": 7
         }
       }
-    },
-    "globalFilterControlType": "MacroFilterBar",
-    "chartSettings": {
-      "showDataLabel": true
-    },
-    "containerLayout": "resizable"
+    }
   },
   "sap.fiori": {
     "registrationIds": [],
     "archeType": "analytical"
   }
 }
+
