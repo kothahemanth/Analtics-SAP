@@ -2,72 +2,7 @@ using my.bookshop as my from '../db/schema';
 
 service CatalogService {
     @readonly entity BooksAnalytics as projection on my.Books;
-    entity PurchaseOrders as projection on my.PurchaseOrders;
 }
-
-entity PurchaseOrders as projection on my.PurchaseOrders{
-    @title: 'Purchase Order'
-    PurchaseOrder : Decimal(10, 2),
-    @title: 'Material'
-    Material : String(50),
-    @title: 'Plant'
-    Plant : String(50),
-    @title: 'Quantity'
-    OrderQuantity : Decimal(20),
-    @title: 'Item'
-    PurchaseOrderItem : String,
-    @title: 'Purchase Order Item Text'
-    PurchaseOrderItemText : String(150),
-    @title: 'Quantity Unit'
-    BaseUnit : String(20),
-    @title: 'Storage Location'
-    StorageLocation : String(50),
-    @title: 'Tax Code'
-    TaxCode : String(50),
-    @title: 'Company Code'
-    CompanyCode : String(50),
-    @title: 'HSN Code'
-    ConsumptionTaxCtrlCode : String(50),
-    @title: 'UOP'
-    OrderPriceUnit : String(50),
-    *
-}
-
-annotate CatalogService.PurchaseOrders with @(
-
-  Aggregation.ApplySupported: {
-    Transformations: [
-      'aggregate',
-      'topcount',
-      'bottomcount',
-      'identity',
-      'concat',
-      'filter',
-      'search'      
-    ],
-
-    GroupableProperties: [
-      PurchaseOrder,
-      Material,
-      Plant,
-      OrderQuantity,
-      StorageLocation
-    ],
-
-    AggregatableProperties: [{
-      $Type : 'Aggregation.AggregatablePropertyType',
-      Property: OrderPriceUnit
-    }]
-  },
-
-  Analytics.AggregatedProperty #totalStock: {
-    $Type : 'Analytics.AggregatedPropertyType',
-    AggregatableProperty : OrderPriceUnit,
-    AggregationMethod : 'sum',
-    Name : 'totalStock',
-    ![@Common.Label]: 'Total stock'
-  },
-);
 
 annotate CatalogService.BooksAnalytics with @(
 
@@ -114,7 +49,8 @@ annotate CatalogService.BooksAnalytics with @(
     ChartType : #Column,
     Dimensions: [
       category1,
-      category2
+      category2,
+      quantity
     ],
     DimensionAttributes: [{
       $Type : 'UI.ChartDimensionAttributeType',
@@ -124,41 +60,10 @@ annotate CatalogService.BooksAnalytics with @(
       $Type : 'UI.ChartDimensionAttributeType',
       Dimension: category2,
       Role: #Category2
-    }],
-    DynamicMeasures: [
-      ![@Analytics.AggregatedProperty#totalStock]
-    ],
-    MeasureAttributes: [{
-      $Type: 'UI.ChartMeasureAttributeType',
-      DynamicMeasure: ![@Analytics.AggregatedProperty#totalStock],
-      Role: #Axis1
-    }]
-  },
-  UI.PresentationVariant: {
-    $Type : 'UI.PresentationVariantType',
-    Visualizations : [
-        '@UI.Chart',
-    ],
-  }
-);
-
-annotate CatalogService.PurchaseOrders with @(
-  UI.Chart: {
-    $Type : 'UI.ChartDefinitionType',
-    Title: 'Order',
-    ChartType : #Column,
-    Dimensions: [
-      OrderQuantity,
-      StorageLocation
-    ],
-    DimensionAttributes: [{
-      $Type : 'UI.ChartDimensionAttributeType',
-      Dimension: OrderQuantity,
-      Role: #Category
     },{
       $Type : 'UI.ChartDimensionAttributeType',
-      Dimension: StorageLocation,
-      Role: #Category2
+      Dimension: quantity,
+      Role: #quantity
     }],
     DynamicMeasures: [
       ![@Analytics.AggregatedProperty#totalStock]
@@ -207,41 +112,13 @@ annotate CatalogService.BooksAnalytics with @(
   }
 }
 
-annotate CatalogService.PurchaseOrders with @(
-  UI.Chart #OrderQuantity: {
-    $Type : 'UI.ChartDefinitionType',
-    ChartType: #Bar,
-    Dimensions: [
-      OrderQuantity
-    ],
-    DynamicMeasures: [
-      ![@Analytics.AggregatedProperty#totalStock]
-    ]
-  },
-  UI.PresentationVariant #prevOrderQuantity: {
-    $Type : 'UI.PresentationVariantType',
-    Visualizations : [
-        '@UI.Chart#OrderQuantity',
-    ],
-  }
-){
-  OrderQuantity @Common.ValueList #vlOrderQuantity: {
-    $Type : 'Common.ValueListType',
-    CollectionPath : 'PurchaseOrders',
-    Parameters: [{
-      $Type : 'Common.ValueListParameterInOut',
-      ValueListProperty : 'OrderQuantity',
-      LocalDataProperty: OrderQuantity
-    }],
-    PresentationVariantQualifier: 'prevOrderQuantity'
-  }
-}
 
-annotate CatalogService.BooksAnalytics with@(
+annotate CatalogService.BooksAnalytics with @(
     UI: {
         SelectionFields  : [
             category1,
             category2,
+            quantity,
             publishedAt
         ],
         LineItem: [
@@ -251,26 +128,7 @@ annotate CatalogService.BooksAnalytics with@(
             {  $Type : 'UI.DataField', Value : category2, },
             {  $Type : 'UI.DataField', Value : stock, },
             {  $Type : 'UI.DataField', Value : publishedAt, },
-            {  $Type : 'UI.DataField', Value : quantity}
-        ],
-    }
-);
-
-annotate CatalogService.PurchaseOrders with@(
-    UI: {
-        SelectionFields  : [
-            OrderQuantity,
-            StorageLocation,
-            Material
-        ],
-        LineItem: [
-            {  $Type : 'UI.DataField', Value : PurchaseOrder, },
-            {  $Type : 'UI.DataField', Value : Material, },
-            {  $Type : 'UI.DataField', Value : Plant, },
-            {  $Type : 'UI.DataField', Value : OrderQuantity, },
-            {  $Type : 'UI.DataField', Value : StorageLocation, },
-            {  $Type : 'UI.DataField', Value : CompanyCode, },
-            {  $Type : 'UI.DataField', Value : OrderPriceUnit, },
+            {  $Type : 'UI.DataField', Value : quantity, }
         ],
     }
 );

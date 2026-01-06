@@ -109,8 +109,8 @@
           "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TitleStock",
           "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#TitleStock",
           "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#stock",
-          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
-          "navigation": "display"
+          "navigation": "display",
+          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification"
         }
       },
       "Stock": {
@@ -119,13 +119,13 @@
         "settings": {
           "entitySet": "BooksAnalytics",
           "title": "Stock Data",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#stock",
+          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Stock",
+          "addODataSelect": true,
           "sortBy": "ID",
           "sortOrder": "ascending",
-          "presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#Stock",
-          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#stock",
-          "listType": "condensed",
           "listFlavor": "bar",
-          "maxItems": 7
+          "listType": "condensed"
         }
       }
     }
