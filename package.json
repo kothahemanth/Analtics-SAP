@@ -18,8 +18,8 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-project2": "cds watch --open project2/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-analytical": "cds watch --open analytical/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
     "requires": {
@@ -30,7 +30,10 @@
     }
   },
   "sapux": [
-    "app/project2",
-    "app/project1"
+    "app/project1",
+    "app/analytical"
+  ],
+  "workspaces": [
+    "app/*"
   ]
 }

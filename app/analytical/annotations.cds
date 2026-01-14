@@ -31,4 +31,3 @@ annotate service.BooksAnalytics with @(
         },
     ]
 );
-

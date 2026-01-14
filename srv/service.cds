@@ -60,10 +60,6 @@ annotate CatalogService.BooksAnalytics with @(
       $Type : 'UI.ChartDimensionAttributeType',
       Dimension: category2,
       Role: #Category2
-    },{
-      $Type : 'UI.ChartDimensionAttributeType',
-      Dimension: quantity,
-      Role: #quantity
     }],
     DynamicMeasures: [
       ![@Analytics.AggregatedProperty#totalStock]
@@ -118,7 +114,6 @@ annotate CatalogService.BooksAnalytics with @(
         SelectionFields  : [
             category1,
             category2,
-            quantity,
             publishedAt
         ],
         LineItem: [

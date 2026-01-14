@@ -1,7 +1,7 @@
 {
-  "_version": "1.65.0",
+  "_version": "1.76.0",
   "sap.app": {
-    "id": "project2",
+    "id": "analytical",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:alp",
-      "version": "1.15.3",
-      "toolsId": "4dfc2c9c-8a0b-4cd8-975e-4ce1eda063b4"
+      "version": "1.20.0",
+      "toolsId": "924b0700-93cd-4a5c-ab41-09ebd7e2dec1"
     },
     "dataSources": {
       "mainService": {
@@ -45,7 +45,7 @@
   "sap.ui5": {
     "flexEnabled": true,
     "dependencies": {
-      "minUI5Version": "1.131.0",
+      "minUI5Version": "1.143.2",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
@@ -60,7 +60,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "project2.i18n.i18n"
+          "bundleName": "analytical.i18n.i18n"
         }
       },
       "": {
@@ -101,6 +101,7 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
+              "initialLoad":true,
               "contextPath": "/BooksAnalytics",
               "variantManagement": "Page",
               "navigation": {
@@ -113,7 +114,7 @@
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
-                    "type": "GridTable",
+                    "type": "AnalyticalTable",
                     "selectionMode": "None"
                   }
                 }
